@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Derp</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="input" /><button type="submit" onclick="dostuff()">Do stuff</button>
+    </div>
+    <div>
+        <span id="output"></span>
+    </div>
+
+    <script type="text/javascript">
+        function dostuff() {
+            var input = document.getElementById("input").value.trim();  // Trim white space in the beginning and end. This naturally affects the length in the output.
+            var reverse = "";
+            var words = input.length > 0 ? 1 : 0; // If trimmed length is bigger than zero, there has to be atleast one word
+            var lastwasspace = false;
+
+            for (i = input.length - 1; i >= 0; i--) {
+                reverse += input[i];
+
+                if (input[i] == ' ' && !lastwasspace) {     // Dont count consecutive spaces
+                    lastwasspace = true;
+                    words++;
+                }
+                else {
+                    lastwasspace = false;
+                }
+            }
+
+            // Should length include white space in beginning and end?
+            document.getElementById("output").innerHTML = "Length: " + input.length + ", Words: " + words + ", Reverse: " + reverse;
+        }
+    </script>
+</body>
+</html>
+
+<!--Write a program that inputs a string from the user and outputs
+
+    The length of the string.
+    The number of words in the string.
+    The original string in reverse.
+
+For example:
+Input: Hello, World!
+Output: Length: 13, Words: 2, Reverse: !dlroW ,olleH-->
